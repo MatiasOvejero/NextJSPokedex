@@ -1,25 +1,37 @@
 import React from "react";
 import Link from "next/link";
-import styles from "./Card.module.css";
+import {
+  BasicInfo,
+  Container,
+  IdContainer,
+  Image,
+  InfoContainer,
+  Name,
+  Table,
+  Type,
+  TypeAndNameContainer,
+  TypeContainer,
+} from "./Card.styled";
 
 export default function Card({ pokemon }) {
+  console.log(pokemon);
   return (
-    <div className={styles.container}>
-      <div className={styles.infoContainer}>
-        <div className={styles.basicInfo}>
-          <div className={styles.typeAndNameContainer}>
-            <div className={styles.name}>{pokemon.name}</div>
-            <div className={styles.typeContainer}>
+    <Container>
+      <InfoContainer>
+        <BasicInfo>
+          <TypeAndNameContainer>
+            <Name>{pokemon.name}</Name>
+            <TypeContainer>
               {pokemon.types.map((types) => (
-                <span className={styles.type}>{types.type.name}</span>
+                <Type>{types.type.name}</Type>
               ))}
-            </div>
-          </div>
-          <div className={styles.idContainer}>id</div>
-        </div>
-        <img src={pokemon.image} className={styles.image} />
-      </div>
-      <div className={styles.table}></div>
-    </div>
+            </TypeContainer>
+          </TypeAndNameContainer>
+          <IdContainer>#{pokemon.number}</IdContainer>
+        </BasicInfo>
+        <Image src={pokemon.image} />
+      </InfoContainer>
+      <Table></Table>
+    </Container>
   );
 }

@@ -33,19 +33,20 @@ export async function getServerSideProps() {
 
 export default function Home({ pokemonList }) {
   return (
-    <div>
+    <>
       <Head>
         <title>Pokedex</title>
+        <link href="dist/output.css" rel="stylesheet"></link>
         <link rel="icon" href="/pokeball.png" />
       </Head>
 
       <main>
         <Pokedex>
           {pokemonList.map((pokemon, index) => (
-            <PokedexCard id={index} pokemon={pokemon} />
+            <PokedexCard key={index} pokemon={pokemon} />
           ))}
         </Pokedex>
       </main>
-    </div>
+    </>
   );
 }

@@ -11,22 +11,21 @@ import {
 } from "./PokedexCard.styled";
 
 export const PokedexCard = ({ pokemon }) => {
-  console.log(pokemon);
   const mainType = pokemon.types[0].type.name;
   return (
-    <>
-      <CardContainer type={mainType}>
-        <InfoContainer>
-          <Name>{pokemon.name}</Name>
-          {pokemon.types.map((types) => (
-            <Type>{types.type.name}</Type>
-          ))}
-        </InfoContainer>
-        <ImageContainer>
-          <MainImage src={pokemon.image} />
-          <Image src="pokeball-transparent.png" />
-        </ImageContainer>
-      </CardContainer>
-    </>
+    <CardContainer type={mainType}>
+      <InfoContainer>
+        <Name>{pokemon.name}</Name>
+        {pokemon.types.map((types, index) => (
+          <Type key={index} type={types.type.name}>
+            {types.type.name}
+          </Type>
+        ))}
+      </InfoContainer>
+      <ImageContainer>
+        <MainImage src={pokemon.image} />
+        <Image src="pokeball-transparent.png" />
+      </ImageContainer>
+    </CardContainer>
   );
 };

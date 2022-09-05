@@ -14,7 +14,6 @@ import {
 } from "./Card.styled";
 
 export default function Card({ pokemon }) {
-  console.log(pokemon);
   return (
     <Container>
       <InfoContainer>

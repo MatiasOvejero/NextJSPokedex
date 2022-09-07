@@ -12,8 +12,9 @@ import {
   TypeAndNameContainer,
   TypeContainer,
 } from "./Card.styled";
+import { MainPokemon } from "../types/model";
 
-export default function Card({ pokemon }) {
+export default function Card({ pokemon }: MainPokemon) {
   return (
     <Container>
       <InfoContainer>

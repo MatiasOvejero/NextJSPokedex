@@ -20,3 +20,23 @@ export const backgroundColorSelector = {
   steel: tw`bg-steel`,
   fairy: tw`bg-fairy`,
 };
+
+export type TypeForBackground =
+  | "grass"
+  | "water"
+  | "fire"
+  | "bug"
+  | "normal"
+  | "flying"
+  | "psychic"
+  | "electric"
+  | "ice"
+  | "fighting"
+  | "poison"
+  | "ground"
+  | "rock"
+  | "ghost"
+  | "dark"
+  | "dragon"
+  | "steel"
+  | "fairy";

@@ -1,5 +1,5 @@
 import tw, { styled } from "twin.macro";
-import { backgroundColorSelector } from "../utils/backgroundColorSelector";
+import { backgroundColorSelector, TypeForBackground } from "../utils/backgroundColorSelector";
 
 // display: flex;
 // background-color: ${({ type }) => backgroundColorSelector(type)};
@@ -9,7 +9,7 @@ import { backgroundColorSelector } from "../utils/backgroundColorSelector";
 // border-radius: 30px;
 // margin-bottom: 1rem;
 // box-shadow: 3px 3px #b3adad33;
-export const CardContainer = styled.div(({ type }) => [
+export const CardContainer = styled.div(({ type }: { type: TypeForBackground }) => [
   tw`flex
   w-64
   h-36
@@ -57,7 +57,7 @@ export const Name = tw.div`
 // text-transform: capitalize;
 // padding: 5px;
 // margin: 3px 0;
-export const Type = styled.span(({ type }) => [
+export const Type = styled.span(({ type }: { type: TypeForBackground }) => [
   tw`
   text-white
   flex

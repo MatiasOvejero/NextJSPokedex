@@ -10,6 +10,7 @@ export interface Pokemon {
   number: number;
   url: string;
   sprites: spriteUrl;
+  id: number;
 }
 
 export interface spriteUrl {

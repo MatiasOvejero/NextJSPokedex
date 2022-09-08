@@ -7,31 +7,53 @@ import {
   Image,
   InfoContainer,
   Name,
-  Table,
+  InfoTable,
+  TopNav,
   Type,
   TypeAndNameContainer,
   TypeContainer,
-} from "./Card.styled";
+  TableNavbar,
+  TableRow,
+  TableCell,
+} from "./PokemonCard.styled";
 import { MainPokemon } from "../types/model";
+import PokemonAbout from "./PokemonAbout";
 
-export default function Card({ pokemon }: MainPokemon) {
+export default function PokemonCard({ pokemon }: MainPokemon) {
+  const mainType: TypeForBackground = pokemon.types[0].type.name;
   return (
-    <Container>
+    <Container type={mainType}>
       <InfoContainer>
+        <TopNav>
+          <div>←</div>
+          <div>♥</div>
+        </TopNav>
         <BasicInfo>
           <TypeAndNameContainer>
             <Name>{pokemon.name}</Name>
             <TypeContainer>
-              {pokemon.types.map((types) => (
-                <Type>{types.type.name}</Type>
+              {pokemon.types.map((types, index) => (
+                <Type key={index} type={types.type.name}>
+                  {types.type.name}
+                </Type>
               ))}
             </TypeContainer>
           </TypeAndNameContainer>
-          <IdContainer>#{pokemon.number}</IdContainer>
+          <IdContainer># {pokemon.number}</IdContainer>
         </BasicInfo>
         <Image src={pokemon.image} />
       </InfoContainer>
-      <Table></Table>
+      <InfoTable>
+        <TableNavbar>
+          <TableRow>
+            <TableCell type={mainType}>About</TableCell>
+            <TableCell type={mainType}>Stats</TableCell>
+            <TableCell type={mainType}>Evolution</TableCell>
+            <TableCell type={mainType}>Moves</TableCell>
+          </TableRow>
+        </TableNavbar>
+        <PokemonAbout></PokemonAbout>
+      </InfoTable>
     </Container>
   );
 }

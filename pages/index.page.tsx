@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { PokedexCard } from "../components/PokedexCard";
 import { Pokedex } from "../components/Pokedex.styled";
 import { Pokemon } from "../types/model";
+import PokemonCard from "../components/PokemonCard";
 
 export async function getServerSideProps() {
   const resp = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -23,9 +24,8 @@ export async function getServerSideProps() {
     name: pokemon.name,
     image: pokemon.sprites.front_default,
     types: pokemon.types,
-    number: pokemon.number,
+    number: pokemon.id,
   }));
-  console.log("🚀 ~ file: index.page.tsx ~ line 28 ~ dataList ~ dataList", dataList);
 
   return {
     props: {
@@ -53,6 +53,9 @@ export default function Home({ pokemonList }: HomeProps) {
             <PokedexCard key={index} pokemon={pokemon} />
           ))}
         </Pokedex>
+        {pokemonList.map((pokemon: Pokemon, index: number) => (
+          <PokemonCard key={index} pokemon={pokemon} />
+        ))}
       </main>
     </>
   );

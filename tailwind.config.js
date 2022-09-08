@@ -2,8 +2,21 @@
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        700: "43.75rem",
+        448: "28rem",
+      },
+      boxShadow: {
+        pokShadow: "5px 5px rgb(233 233 233 / 45%)",
+      },
+      borderRadius: {
+        pok: "25px",
+      },
+    },
     colors: {
+      black: "#000000",
+      greenBG: "#008000",
       grass: "#7ac94f",
       water: "#6890f0",
       fire: "#ff9d84",
@@ -23,6 +36,7 @@ module.exports = {
       steel: "#b8b8d0",
       fairy: "#f0b6bc",
       white: "#ffffff",
+      lightBorder: "rgb(252, 240, 240)",
     },
   },
   plugins: [],

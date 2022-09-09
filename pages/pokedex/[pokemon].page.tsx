@@ -23,6 +23,7 @@ export async function getServerSideProps(context) {
   const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${context.params.pokemon}`);
 
   const pokemonData = await resp.json();
+  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 26 ~ getServerSideProps ~ pokemonData", pokemonData);
 
   const pokemon = {
     abilities: pokemonData.abilities,
@@ -30,7 +31,7 @@ export async function getServerSideProps(context) {
     image: pokemonData.sprites.front_default,
     name: pokemonData.name,
     number: pokemonData.id,
-    species: pokemonData.species.name,
+    exp: pokemonData.base_experience,
     types: pokemonData.types,
     weight: pokemonData.weight,
   };
@@ -43,14 +44,15 @@ export async function getServerSideProps(context) {
 }
 
 export default function PokemonCard({ pokemon }) {
-  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 47 ~ PokemonCard ~ pokemon", pokemon);
   const mainType: TypeForBackground = pokemon.types[0].type.name;
 
   return (
-    <Container>
+    <Container type={mainType}>
       <InfoContainer>
         <TopNav>
-          <div>←</div>
+          <Link href="/">
+            <a>←</a>
+          </Link>
           <div>♥</div>
         </TopNav>
         <BasicInfo>
@@ -77,7 +79,7 @@ export default function PokemonCard({ pokemon }) {
             <TableCell type={mainType}>Moves</TableCell>
           </TableRow>
         </TableNavbar>
-        <PokemonAbout></PokemonAbout>
+        <PokemonAbout exp={pokemon.base_experience} height={pokemon.height} weight={pokemon.weight}></PokemonAbout>
       </InfoTable>
     </Container>
   );

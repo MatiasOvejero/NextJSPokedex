@@ -1,6 +1,6 @@
 import React from "react";
-import { MainPokemon, Pokemon, PokemonType, PokemonTypeItem } from "../types/model";
-import { TypeForBackground } from "../utils/backgroundColorSelector";
+import { MainPokemon, Pokemon, PokemonType, PokemonTypeItem } from "../../types/model";
+import { TypeForBackground } from "../../utils/backgroundColorSelector";
 import { CardContainer, Image, InfoContainer, Name, Type, ImageContainer, MainImage } from "./PokedexCard.styled";
 
 export const PokedexCard = ({ pokemon }: MainPokemon) => {

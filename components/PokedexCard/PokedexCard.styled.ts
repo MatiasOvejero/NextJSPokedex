@@ -1,5 +1,5 @@
 import tw, { styled } from "twin.macro";
-import { backgroundColorSelector, TypeForBackground } from "../utils/backgroundColorSelector";
+import { backgroundColorSelector, TypeForBackground } from "../../utils/backgroundColorSelector";
 
 // display: flex;
 // background-color: ${({ type }) => backgroundColorSelector(type)};

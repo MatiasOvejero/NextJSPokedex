@@ -3,10 +3,11 @@ import Link from "next/link";
 import Card from "./pokedex/[pokemon].page";
 import React from "react";
 import styled from "styled-components";
-import { PokedexCard } from "../components/PokedexCard";
-import { Pokedex } from "../components/Pokedex.styled";
+import { PokedexCard } from "../components/PokedexCard/PokedexCard";
+import { Pokedex } from "../components/Pokedex/Pokedex.styled";
 import { Pokemon } from "../types/model";
 import PokemonCard from "./pokedex/[pokemon].page";
+import { Anchor } from "../components/Pokemon/PokemonCard.styled";
 
 export async function getServerSideProps() {
   const resp = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -56,9 +57,9 @@ export default function Home({ pokemonList }: HomeProps) {
                 // query: { pokemon: `'pokemon-${index}'` },
               }}
             >
-              <a>
+              <Anchor>
                 <PokedexCard key={index} pokemon={pokemon} />
-              </a>
+              </Anchor>
             </Link>
           ))}
         </Pokedex>

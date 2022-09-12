@@ -11,6 +11,10 @@ export interface Pokemon {
   url: string;
   sprites: spriteUrl;
   id: number;
+  abilities: abilities;
+  exp: number;
+  height: number;
+  weight: number;
 }
 
 export interface spriteUrl {
@@ -23,5 +27,14 @@ export interface PokemonType {
 
 export interface PokemonTypeItem {
   name: TypeForBackground;
+  url: string;
+}
+
+export interface abilities {
+  ability: ability[];
+}
+
+export interface ability {
+  name: string;
   url: string;
 }

@@ -7,6 +7,12 @@ module.exports = {
         700: "43.75rem",
         448: "28rem",
       },
+      spacing: {
+        25: "25%",
+      },
+      width: {
+        40: "40%",
+      },
       boxShadow: {
         pokShadow: "5px 5px rgb(233 233 233 / 45%)",
       },
@@ -35,6 +41,8 @@ module.exports = {
       dragon: "#7038f8",
       steel: "#b8b8d0",
       fairy: "#f0b6bc",
+      textGrey: "rgb(151 151 151 / 77%)",
+      borderGrey: "#80808057",
       white: "#ffffff",
       lightBorder: "rgb(252, 240, 240)",
     },

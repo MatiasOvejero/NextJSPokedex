@@ -1,8 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import {
   BasicInfo,
+  BackArrow,
   Container,
+  FavIcon,
   IdContainer,
   Image,
   InfoContainer,
@@ -15,23 +18,26 @@ import {
   TableNavbar,
   TableRow,
   TableCell,
-} from "../../components/PokemonCard.styled";
+  Anchor,
+} from "../../components/Pokemon/PokemonCard.styled";
 import { MainPokemon, Pokemon } from "../../types/model";
-import PokemonAbout from "../../components/PokemonAbout";
+import PokemonAbout from "../../components/Pokemon/PokemonAbout";
+import PokemonStats from "../../components/Pokemon/PokemonStats";
 
 export async function getServerSideProps(context) {
   const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${context.params.pokemon}`);
 
   const pokemonData = await resp.json();
-  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 26 ~ getServerSideProps ~ pokemonData", pokemonData);
 
-  const pokemon = {
+  //  STATS no esta tipado porque aun no lo estoy utilizando
+  const pokemon: Pokemon = {
     abilities: pokemonData.abilities,
+    exp: pokemonData.base_experience,
     height: pokemonData.height,
     image: pokemonData.sprites.front_default,
     name: pokemonData.name,
     number: pokemonData.id,
-    exp: pokemonData.base_experience,
+    stats: pokemonData.stats,
     types: pokemonData.types,
     weight: pokemonData.weight,
   };
@@ -45,15 +51,25 @@ export async function getServerSideProps(context) {
 
 export default function PokemonCard({ pokemon }) {
   const mainType: TypeForBackground = pokemon.types[0].type.name;
+  const [current, setCurrent] = useState("about");
+  const Tabs = {
+    about: <PokemonAbout exp={pokemon.exp} height={pokemon.height} weight={pokemon.weight} />,
+    stats: <PokemonStats />,
+  };
+
+  const setAboutTab = () => setCurrent("about");
+  const setStatsTab = () => setCurrent("stats");
 
   return (
     <Container type={mainType}>
       <InfoContainer>
         <TopNav>
           <Link href="/">
-            <a>←</a>
+            <Anchor>
+              <BackArrow>←</BackArrow>
+            </Anchor>
           </Link>
-          <div>♥</div>
+          <FavIcon>♥</FavIcon>
         </TopNav>
         <BasicInfo>
           <TypeAndNameContainer>
@@ -72,14 +88,20 @@ export default function PokemonCard({ pokemon }) {
       </InfoContainer>
       <InfoTable>
         <TableNavbar>
-          <TableRow>
-            <TableCell type={mainType}>About</TableCell>
-            <TableCell type={mainType}>Stats</TableCell>
-            <TableCell type={mainType}>Evolution</TableCell>
-            <TableCell type={mainType}>Moves</TableCell>
-          </TableRow>
+          <tbody>
+            <TableRow>
+              <TableCell type={mainType} onClick={setAboutTab}>
+                About
+              </TableCell>
+              <TableCell type={mainType} onClick={setStatsTab}>
+                Stats
+              </TableCell>
+              <TableCell type={mainType}>Evolution</TableCell>
+              <TableCell type={mainType}>Moves</TableCell>
+            </TableRow>
+          </tbody>
         </TableNavbar>
-        <PokemonAbout exp={pokemon.base_experience} height={pokemon.height} weight={pokemon.weight}></PokemonAbout>
+        {Tabs[current]}
       </InfoTable>
     </Container>
   );

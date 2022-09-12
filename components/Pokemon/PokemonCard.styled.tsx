@@ -1,5 +1,5 @@
 import tw, { styled } from "twin.macro";
-import { backgroundColorSelector, TypeForBackground } from "../utils/backgroundColorSelector";
+import { backgroundColorSelector, TypeForBackground } from "../../utils/backgroundColorSelector";
 
 /* width: 400px;
 height: 700px;
@@ -20,10 +20,7 @@ export const Container = styled.div(({ type }: { type: TypeForBackground }) => [
   mb-4
   ml-96
   block
-  border
-  border-lightBorder
   rounded-pok
-  shadow-pokShadow
   justify-center
   items-center
   px-3
@@ -121,6 +118,10 @@ export const TopNav = tw.div`
   flex-row
   justify-between
   content-center
+  p-1
+  mx-12
+  text-xl
+  font-bold
 `;
 
 /* height: 448px;
@@ -130,8 +131,12 @@ background-color: #ffffff;
 margin: 14px -12px 0px -12px; */
 export const InfoTable = tw.div`
 h-448
-border-t
-border-white
+border-solid
+border-t-0
+border-r
+border-l
+border-b
+border-borderGrey
 rounded-3xl
 mt-3.5
 mx-[-12px]
@@ -157,3 +162,14 @@ export const TableCell = tw.td`
   border-black
   w-24
 `;
+
+export const Anchor = tw.a`
+  no-underline
+`;
+
+export const BackArrow = tw.span`
+  text-white
+  `;
+export const FavIcon = tw.span`
+  text-white
+  `;

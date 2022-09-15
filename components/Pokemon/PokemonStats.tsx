@@ -1,5 +1,5 @@
 import React from "react";
-import { BarContainer, BarProgress, StatContainer } from "./PokemonStats.styled";
+import { BarContainer, BarProgress, StatContainer, StatScreen } from "./PokemonStats.styled";
 
 interface Props {
   hp: number;
@@ -12,7 +12,7 @@ interface Props {
 
 export default function PokemonStats(props: Props) {
   return (
-    <>
+    <StatScreen>
       <StatContainer>
         <span>hp {props.hp}</span>
         <BarContainer>
@@ -49,6 +49,6 @@ export default function PokemonStats(props: Props) {
           <BarProgress></BarProgress>
         </BarContainer>
       </StatContainer>
-    </>
+    </StatScreen>
   );
 }

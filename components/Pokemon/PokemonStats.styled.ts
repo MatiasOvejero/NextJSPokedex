@@ -1,5 +1,13 @@
 import tw, { styled } from "twin.macro";
 
+export const StatScreen = tw.div`
+  h-full
+  pl-3
+  flex
+  flex-col
+  justify-around
+`;
+
 export const StatContainer = tw.div`
   flex
 `;

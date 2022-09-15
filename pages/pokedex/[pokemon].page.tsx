@@ -19,14 +19,13 @@ import {
   TableRow,
   TableCell,
   Anchor,
+  ButtonTab,
 } from "./PokemonCard.styled";
-import { MainPokemon, makePokemon, Pokemon } from "../../types/model";
+import { makePokemon, Pokemon } from "../../types/model";
 import PokemonAbout from "../../components/Pokemon/PokemonAbout";
 import PokemonStats from "../../components/Pokemon/PokemonStats";
 import { TypeForBackground } from "../../utils/backgroundColorSelector";
-import { AppContext } from "next/app";
 import { NextPageContext } from "next";
-import { JsxElement } from "typescript";
 
 interface Context extends NextPageContext {
   params: {
@@ -40,6 +39,12 @@ export async function getServerSideProps(context: Context) {
   const pokemonData = await resp.json();
 
   const pokemon: Pokemon = makePokemon({
+    hp: pokemonData.stats[0].base_stat,
+    attack: pokemonData.stats[1].base_stat,
+    defense: pokemonData.stats[2].base_stat,
+    special_attack: pokemonData.stats[3].base_stat,
+    special_defense: pokemonData.stats[4].base_stat,
+    speed: pokemonData.stats[5].base_stat,
     abilities: pokemonData.abilities,
     exp: pokemonData.base_experience,
     height: pokemonData.height,
@@ -63,13 +68,21 @@ interface Props {
 }
 
 export default function PokemonCard({ pokemon }: Props) {
-  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 66 ~ PokemonCard ~ pokemon", pokemon.id);
   const mainType: TypeForBackground = pokemon.types[0].type.name;
   const [current, setCurrent] = useState("about");
 
   const Tabs: { [key: string]: JSX.Element } = {
     about: <PokemonAbout exp={pokemon.exp} height={pokemon.height} weight={pokemon.weight} />,
-    stats: <PokemonStats />,
+    stats: (
+      <PokemonStats
+        hp={pokemon.hp}
+        attack={pokemon.attack}
+        defense={pokemon.defense}
+        special_attack={pokemon.special_attack}
+        special_defense={pokemon.special_defense}
+        speed={pokemon.speed}
+      />
+    ),
   };
 
   const setAboutTab = () => setCurrent("about");
@@ -106,13 +119,17 @@ export default function PokemonCard({ pokemon }: Props) {
           <tbody>
             <TableRow>
               <TableCell>
-                <button onClick={setAboutTab}>About</button>
+                <ButtonTab onClick={setAboutTab}>About</ButtonTab>
               </TableCell>
               <TableCell>
-                <button onClick={setStatsTab}>Stats</button>
+                <ButtonTab onClick={setStatsTab}>Stats</ButtonTab>
               </TableCell>
-              <TableCell>Evolution</TableCell>
-              <TableCell>Moves</TableCell>
+              <TableCell>
+                <ButtonTab onClick={setAboutTab}>Evolution</ButtonTab>
+              </TableCell>
+              <TableCell>
+                <ButtonTab onClick={setAboutTab}>Moves</ButtonTab>
+              </TableCell>
             </TableRow>
           </tbody>
         </TableNavbar>

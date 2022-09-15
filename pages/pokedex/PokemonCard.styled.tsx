@@ -127,3 +127,12 @@ export const BackArrow = tw.span`
 export const FavIcon = tw.span`
   text-white
   `;
+
+export const ButtonTab = tw.button`
+  border-0
+  rounded-lg
+  opacity-70
+  text-black
+  bg-transparent
+  focus:bg-lightBorder
+`;

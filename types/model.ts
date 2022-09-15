@@ -15,6 +15,12 @@ export interface Pokemon {
   weight: number;
   stats: Stat[];
   sprites: { front_default: string };
+  hp: number;
+  attack: number;
+  defense: number;
+  special_attack: number;
+  special_defense: number;
+  speed: number;
 }
 
 export const makePokemon = (pokemon: Partial<Pokemon>): Pokemon => {
@@ -30,6 +36,12 @@ export const makePokemon = (pokemon: Partial<Pokemon>): Pokemon => {
     types: pokemon.types ? pokemon.types : [],
     url: pokemon.url ? pokemon.url : "",
     weight: pokemon.weight ? pokemon.weight : 0,
+    hp: pokemon.hp ? pokemon.hp : 0,
+    attack: pokemon.attack ? pokemon.attack : 0,
+    defense: pokemon.defense ? pokemon.defense : 0,
+    speed: pokemon.speed ? pokemon.speed : 0,
+    special_attack: pokemon.special_attack ? pokemon.special_attack : 0,
+    special_defense: pokemon.special_defense ? pokemon.special_defense : 0,
   };
 
   return defaultValue;

@@ -1,14 +1,54 @@
 import React from "react";
+import { BarContainer, BarProgress, StatContainer } from "./PokemonStats.styled";
 
-export default function PokemonStats() {
+interface Props {
+  hp: number;
+  attack: number;
+  defense: number;
+  speed: number;
+  special_attack: number;
+  special_defense: number;
+}
+
+export default function PokemonStats(props: Props) {
   return (
     <>
-      <div>hp</div>
-      <div>attack</div>
-      <div>defense</div>
-      <div>speed</div>
-      <div>Special attack</div>
-      <div>special defense</div>
+      <StatContainer>
+        <span>hp {props.hp}</span>
+        <BarContainer>
+          <BarProgress></BarProgress>
+        </BarContainer>
+      </StatContainer>
+      <StatContainer>
+        <div>attack {props.attack}</div>
+        <BarContainer>
+          <BarProgress></BarProgress>
+        </BarContainer>
+      </StatContainer>
+      <StatContainer>
+        <div>defense {props.defense}</div>
+        <BarContainer>
+          <BarProgress></BarProgress>
+        </BarContainer>
+      </StatContainer>
+      <StatContainer>
+        <div>speed {props.speed}</div>
+        <BarContainer>
+          <BarProgress></BarProgress>
+        </BarContainer>
+      </StatContainer>
+      <StatContainer>
+        <div>Special attack {props.special_attack}</div>
+        <BarContainer>
+          <BarProgress></BarProgress>
+        </BarContainer>
+      </StatContainer>
+      <StatContainer>
+        <div>special defense {props.special_defense}</div>
+        <BarContainer>
+          <BarProgress></BarProgress>
+        </BarContainer>
+      </StatContainer>
     </>
   );
 }

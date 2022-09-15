@@ -7,7 +7,7 @@ import { PokedexCard } from "../components/PokedexCard/PokedexCard";
 import { Pokedex } from "../components/Pokedex/Pokedex.styled";
 import { Pokemon } from "../types/model";
 import PokemonCard from "./pokedex/[pokemon].page";
-import { Anchor } from "../components/Pokemon/PokemonCard.styled";
+import { Anchor } from "./pokedex/PokemonCard.styled";
 
 export async function getServerSideProps() {
   const resp = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -15,8 +15,8 @@ export async function getServerSideProps() {
   const pokemonList = await resp.json();
 
   const list = await Promise.all(
-    pokemonList.results.map(async (pokemon: Pokemon) => {
-      const response = await fetch(pokemon.url);
+    pokemonList.results.map(async (listPokemon: Pokemon) => {
+      const response = await fetch(listPokemon.url);
       return await response.json();
     })
   );
@@ -27,7 +27,7 @@ export async function getServerSideProps() {
     types: pokemon.types,
     number: pokemon.id,
   }));
-
+  
   return {
     props: {
       pokemonList: dataList,
@@ -54,7 +54,6 @@ export default function Home({ pokemonList }: HomeProps) {
             <Link
               href={{
                 pathname: `/pokedex/${pokemon.name}`,
-                // query: { pokemon: `'pokemon-${index}'` },
               }}
             >
               <Anchor>
@@ -63,9 +62,6 @@ export default function Home({ pokemonList }: HomeProps) {
             </Link>
           ))}
         </Pokedex>
-        {/* {pokemonList.map((pokemon: Pokemon, index: number) => (
-          <PokemonCard key={index} pokemon={pokemon} />
-        ))} */}
       </main>
     </>
   );

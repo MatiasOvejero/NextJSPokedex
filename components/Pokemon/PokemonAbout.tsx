@@ -1,7 +1,14 @@
 import React from "react";
-import { AboutContainer, td, DataContainer, AboutTable, InfoName, DatabaseData } from "./PokemonAbout.styled";
+import { Pokemon } from "../../types/model";
+import { AboutContainer, DataContainer, AboutTable, InfoName, DatabaseData } from "./PokemonAbout.styled";
 
-export default function PokemonAbout(props) {
+interface Props {
+  exp: number;
+  height: number;
+  weight: number;
+}
+
+export default function PokemonAbout(props: Props) {
   return (
     <AboutTable>
       <AboutContainer>

@@ -19,28 +19,37 @@ import {
   TableRow,
   TableCell,
   Anchor,
-} from "../../components/Pokemon/PokemonCard.styled";
-import { MainPokemon, Pokemon } from "../../types/model";
+} from "./PokemonCard.styled";
+import { MainPokemon, makePokemon, Pokemon } from "../../types/model";
 import PokemonAbout from "../../components/Pokemon/PokemonAbout";
 import PokemonStats from "../../components/Pokemon/PokemonStats";
+import { TypeForBackground } from "../../utils/backgroundColorSelector";
+import { AppContext } from "next/app";
+import { NextPageContext } from "next";
+import { JsxElement } from "typescript";
 
-export async function getServerSideProps(context) {
+interface Context extends NextPageContext {
+  params: {
+    pokemon: string;
+  };
+}
+
+export async function getServerSideProps(context: Context) {
   const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${context.params.pokemon}`);
 
   const pokemonData = await resp.json();
 
-  //  STATS no esta tipado porque aun no lo estoy utilizando
-  const pokemon: Pokemon = {
+  const pokemon: Pokemon = makePokemon({
     abilities: pokemonData.abilities,
     exp: pokemonData.base_experience,
     height: pokemonData.height,
     image: pokemonData.sprites.front_default,
     name: pokemonData.name,
-    number: pokemonData.id,
+    id: pokemonData.id,
     stats: pokemonData.stats,
     types: pokemonData.types,
     weight: pokemonData.weight,
-  };
+  });
 
   return {
     props: {
@@ -49,10 +58,16 @@ export async function getServerSideProps(context) {
   };
 }
 
-export default function PokemonCard({ pokemon }) {
+interface Props {
+  pokemon: Pokemon;
+}
+
+export default function PokemonCard({ pokemon }: Props) {
+  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 66 ~ PokemonCard ~ pokemon", pokemon.id);
   const mainType: TypeForBackground = pokemon.types[0].type.name;
   const [current, setCurrent] = useState("about");
-  const Tabs = {
+
+  const Tabs: { [key: string]: JSX.Element } = {
     about: <PokemonAbout exp={pokemon.exp} height={pokemon.height} weight={pokemon.weight} />,
     stats: <PokemonStats />,
   };
@@ -82,7 +97,7 @@ export default function PokemonCard({ pokemon }) {
               ))}
             </TypeContainer>
           </TypeAndNameContainer>
-          <IdContainer># {pokemon.number}</IdContainer>
+          <IdContainer># {pokemon.id}</IdContainer>
         </BasicInfo>
         <Image src={pokemon.image} />
       </InfoContainer>
@@ -90,14 +105,14 @@ export default function PokemonCard({ pokemon }) {
         <TableNavbar>
           <tbody>
             <TableRow>
-              <TableCell type={mainType} onClick={setAboutTab}>
-                About
+              <TableCell>
+                <button onClick={setAboutTab}>About</button>
               </TableCell>
-              <TableCell type={mainType} onClick={setStatsTab}>
-                Stats
+              <TableCell>
+                <button onClick={setStatsTab}>Stats</button>
               </TableCell>
-              <TableCell type={mainType}>Evolution</TableCell>
-              <TableCell type={mainType}>Moves</TableCell>
+              <TableCell>Evolution</TableCell>
+              <TableCell>Moves</TableCell>
             </TableRow>
           </tbody>
         </TableNavbar>

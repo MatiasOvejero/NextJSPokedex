@@ -6,11 +6,6 @@ export const AboutTable = tw.table`
   mt-2.5
 `;
 
-// width: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     height: 100%;
-//     justify-content: space-around;
 export const AboutContainer = tw.tbody`
   w-full
   h-80

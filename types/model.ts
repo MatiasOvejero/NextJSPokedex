@@ -7,16 +7,33 @@ export interface Pokemon {
   name: string;
   image: string;
   types: PokemonType[];
-  number: number;
   url: string;
-  sprites: spriteUrl;
   id: number;
-  abilities: abilities;
+  abilities: Abilities[];
   exp: number;
   height: number;
   weight: number;
+  stats: Stat[];
+  sprites: { front_default: string };
 }
 
+export const makePokemon = (pokemon: Partial<Pokemon>): Pokemon => {
+  const defaultValue: Pokemon = {
+    abilities: pokemon.abilities ? pokemon.abilities : [],
+    exp: pokemon.exp ? pokemon.exp : 0,
+    image: pokemon.image ? pokemon.image : "",
+    height: pokemon.height ? pokemon.height : 0,
+    id: pokemon.id ? pokemon.id : -1,
+    name: pokemon.name ? pokemon.name : "",
+    sprites: pokemon.sprites ? pokemon.sprites : { front_default: "" },
+    stats: pokemon.stats ? pokemon.stats : [],
+    types: pokemon.types ? pokemon.types : [],
+    url: pokemon.url ? pokemon.url : "",
+    weight: pokemon.weight ? pokemon.weight : 0,
+  };
+
+  return defaultValue;
+};
 export interface spriteUrl {
   front_default: string;
 }
@@ -30,11 +47,22 @@ export interface PokemonTypeItem {
   url: string;
 }
 
-export interface abilities {
-  ability: ability[];
+export interface Abilities {
+  ability: Ability;
 }
 
-export interface ability {
+export interface Ability {
+  name: string;
+  url: string;
+}
+
+export interface Stat {
+  base_stat: number;
+  effort: number;
+  stat: StatDetail;
+}
+
+export interface StatDetail {
   name: string;
   url: string;
 }

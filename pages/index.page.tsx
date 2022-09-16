@@ -4,10 +4,10 @@ import Card from "./pokedex/[pokemon].page";
 import React from "react";
 import styled from "styled-components";
 import { PokedexCard } from "../components/PokedexCard/PokedexCard";
-import { Pokedex } from "../components/Pokedex/Pokedex.styled";
+import { Pokedex } from "./index.styled";
 import { Pokemon } from "../types/model";
 import PokemonCard from "./pokedex/[pokemon].page";
-import { Anchor } from "./pokedex/PokemonCard.styled";
+import { Anchor } from "./pokedex/[pokemon].styled";
 
 export async function getServerSideProps() {
   const resp = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -27,7 +27,7 @@ export async function getServerSideProps() {
     types: pokemon.types,
     number: pokemon.id,
   }));
-  
+
   return {
     props: {
       pokemonList: dataList,

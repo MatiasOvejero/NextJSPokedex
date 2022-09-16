@@ -20,10 +20,10 @@ import {
   TableCell,
   Anchor,
   ButtonTab,
-} from "./PokemonCard.styled";
+} from "./[pokemon].styled";
 import { makePokemon, Pokemon } from "../../types/model";
-import PokemonAbout from "../../components/Pokemon/PokemonAbout";
-import PokemonStats from "../../components/Pokemon/PokemonStats";
+import PokemonAbout from "../../components/PokemonAbout/PokemonAbout";
+import PokemonStats from "../../components/PokemonStats/PokemonStats";
 import { TypeForBackground } from "../../utils/backgroundColorSelector";
 import { NextPageContext } from "next";
 

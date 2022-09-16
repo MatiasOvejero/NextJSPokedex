@@ -8,10 +8,9 @@ export const Container = styled.div(({ type }: { type: TypeForBackground }) => [
   mb-4
   ml-96
   block
-  rounded-pok
+  rounded-primary
   justify-center
   items-center
-  px-3
   `,
   backgroundColorSelector[type],
 ]);
@@ -90,10 +89,9 @@ border-t-0
 border-r
 border-l
 border-b
-border-borderGrey
+border-greyPrimary
 rounded-3xl
 mt-3.5
-mx-[-12px]
 bg-white
 flex
 flex-col
@@ -131,8 +129,7 @@ export const FavIcon = tw.span`
 export const ButtonTab = tw.button`
   border-0
   rounded-lg
+  bg-greyPrimary
   opacity-70
-  text-black
-  bg-transparent
   focus:bg-lightBorder
 `;

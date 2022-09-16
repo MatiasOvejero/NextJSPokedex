@@ -22,7 +22,7 @@ export const DataContainer = tw.td`
 
 export const InfoName = tw.td`
   w-40
-  text-textGrey
+  text-greySecondary
 `;
 
 export const DatabaseData = tw.td`

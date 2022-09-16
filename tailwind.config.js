@@ -13,14 +13,10 @@ module.exports = {
       width: {
         40: "40%",
       },
-      boxShadow: {
-        pokShadow: "5px 5px rgb(233 233 233 / 45%)",
-      },
       borderRadius: {
-        pok: "25px",
+        primary: "25px",
       },
       colors: {
-        greenBG: "#008000",
         grass: "#7ac94f",
         water: "#6890f0",
         fire: "#ff9d84",
@@ -39,8 +35,8 @@ module.exports = {
         dragon: "#7038f8",
         steel: "#b8b8d0",
         fairy: "#f0b6bc",
-        textGrey: "rgb(151 151 151 / 77%)",
-        borderGrey: "#80808057",
+        greyPrimary: "#80808057",
+        greySecondary: "#55464657",
         lightBorder: "rgb(252, 240, 240)",
       },
     },

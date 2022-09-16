@@ -1,5 +1,17 @@
 import React from "react";
-import { BarContainer, BarProgress, StatContainer, StatScreen } from "./PokemonStats.styled";
+import {
+  Attack,
+  BarContainer,
+  Defense,
+  HP,
+  SpecialAttack,
+  SpecialDefense,
+  Speed,
+  StatContainer,
+  StatName,
+  StatScreen,
+  StatValue,
+} from "./PokemonStats.styled";
 
 interface Props {
   hp: number;
@@ -14,39 +26,45 @@ export default function PokemonStats(props: Props) {
   return (
     <StatScreen>
       <StatContainer>
-        <span>hp {props.hp}</span>
+        <StatName>HP </StatName>
+        <StatValue>{props.hp}</StatValue>
         <BarContainer>
-          <BarProgress></BarProgress>
+          <HP></HP>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <div>attack {props.attack}</div>
+        <StatName>attack </StatName>
+        <StatValue>{props.attack}</StatValue>
         <BarContainer>
-          <BarProgress></BarProgress>
+          <Attack></Attack>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <div>defense {props.defense}</div>
+        <StatName>defense </StatName>
+        <StatValue>{props.defense}</StatValue>
         <BarContainer>
-          <BarProgress></BarProgress>
+          <Defense></Defense>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <div>speed {props.speed}</div>
+        <StatName>speed </StatName>
+        <StatValue>{props.speed}</StatValue>
         <BarContainer>
-          <BarProgress></BarProgress>
+          <Speed></Speed>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <div>Special attack {props.special_attack}</div>
+        <StatName>Special attack </StatName>
+        <StatValue>{props.special_attack}</StatValue>
         <BarContainer>
-          <BarProgress></BarProgress>
+          <SpecialAttack></SpecialAttack>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <div>special defense {props.special_defense}</div>
+        <StatName>special defense </StatName>
+        <StatValue>{props.special_defense}</StatValue>
         <BarContainer>
-          <BarProgress></BarProgress>
+          <SpecialDefense></SpecialDefense>
         </BarContainer>
       </StatContainer>
     </StatScreen>

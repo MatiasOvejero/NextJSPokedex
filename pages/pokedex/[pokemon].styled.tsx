@@ -117,10 +117,12 @@ export const TableCell = tw.td`
 
 export const Anchor = tw.a`
   no-underline
+  hover: cursor-pointer
 `;
 
 export const BackArrow = tw.span`
   text-white
+  hover: cursor-pointer
   `;
 export const FavIcon = tw.span`
   text-white
@@ -132,4 +134,5 @@ export const ButtonTab = tw.button`
   bg-greyPrimary
   opacity-70
   focus:bg-lightBorder
+  hover: cursor-pointer
 `;

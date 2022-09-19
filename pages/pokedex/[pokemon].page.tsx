@@ -87,6 +87,7 @@ export default function PokemonCard({ pokemon }: Props) {
 
   const setAboutTab = () => setCurrent("about");
   const setStatsTab = () => setCurrent("stats");
+  const setMovesTab = () => setCurrent("moves");
 
   return (
     <Container type={mainType}>
@@ -128,7 +129,7 @@ export default function PokemonCard({ pokemon }: Props) {
                 <ButtonTab onClick={setAboutTab}>Evolution</ButtonTab>
               </TableCell>
               <TableCell>
-                <ButtonTab onClick={setAboutTab}>Moves</ButtonTab>
+                <ButtonTab onClick={setMovesTab}>Moves</ButtonTab>
               </TableCell>
             </TableRow>
           </tbody>

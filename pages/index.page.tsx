@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { PokedexCard } from "../components/PokedexCard/PokedexCard";
 import { Pokedex } from "./index.styled";
 import { Pokemon } from "../types/model";
-import PokemonCard from "./pokedex/[pokemon].page";
 import { Anchor } from "./pokedex/[pokemon].styled";
 
 export async function getServerSideProps() {
@@ -26,6 +25,7 @@ export async function getServerSideProps() {
     image: pokemon.sprites.front_default,
     types: pokemon.types,
     number: pokemon.id,
+    species: pokemon.species.url,
   }));
 
   return {

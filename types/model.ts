@@ -20,6 +20,7 @@ export interface Pokemon {
   defense: number;
   special_attack: number;
   special_defense: number;
+  species: SpeciesUrl;
   speed: number;
 }
 
@@ -40,12 +41,17 @@ export const makePokemon = (pokemon: Partial<Pokemon>): Pokemon => {
     attack: pokemon.attack ? pokemon.attack : 0,
     defense: pokemon.defense ? pokemon.defense : 0,
     speed: pokemon.speed ? pokemon.speed : 0,
+    species: pokemon.species ? pokemon.species : { url: "" },
     special_attack: pokemon.special_attack ? pokemon.special_attack : 0,
     special_defense: pokemon.special_defense ? pokemon.special_defense : 0,
   };
 
   return defaultValue;
 };
+
+export interface SpeciesUrl {
+  url: string;
+}
 export interface spriteUrl {
   front_default: string;
 }
@@ -77,8 +83,4 @@ export interface Stat {
 export interface StatDetail {
   name: string;
   url: string;
-}
-
-export interface BarProgress {
-  barWidth: number;
 }

@@ -1,5 +1,4 @@
 import tw, { styled } from "twin.macro";
-import { BarProgress } from "../../types/model";
 
 export const StatScreen = tw.div`
   h-full
@@ -32,7 +31,11 @@ export const BarContainer = tw.div`
   p-1
 `;
 
-export const HpBarProgress = styled.span(({ barWidth }: { type: BarProgress }) => [
+export interface BarProgress {
+  barWidth: number;
+}
+
+export const HpBarProgress = styled.span(({ barWidth }: BarProgress) => [
   tw`
   bg-green-700
   block
@@ -42,7 +45,7 @@ export const HpBarProgress = styled.span(({ barWidth }: { type: BarProgress }) =
   `width : ${barWidth}%`,
 ]);
 
-export const AttackBarProgress = styled.span(({ barWidth }: { type: BarProgress }) => [
+export const AttackBarProgress = styled.span(({ barWidth }: BarProgress) => [
   tw`
   bg-red-400
   block
@@ -52,7 +55,7 @@ export const AttackBarProgress = styled.span(({ barWidth }: { type: BarProgress 
   `width : ${barWidth}%`,
 ]);
 
-export const DefenseBarProgress = styled.span(({ barWidth }: { type: BarProgress }) => [
+export const DefenseBarProgress = styled.span(({ barWidth }: BarProgress) => [
   tw`
   bg-blue-300
   block
@@ -62,7 +65,7 @@ export const DefenseBarProgress = styled.span(({ barWidth }: { type: BarProgress
   `width : ${barWidth}%`,
 ]);
 
-export const SpeedBarProgress = styled.span(({ barWidth }: { type: BarProgress }) => [
+export const SpeedBarProgress = styled.span(({ barWidth }: BarProgress) => [
   tw`
   bg-yellow-300
   block
@@ -72,7 +75,7 @@ export const SpeedBarProgress = styled.span(({ barWidth }: { type: BarProgress }
   `width : ${barWidth}%`,
 ]);
 
-export const SABarProgress = styled.span(({ barWidth }: { type: BarProgress }) => [
+export const SABarProgress = styled.span(({ barWidth }: BarProgress) => [
   tw`
   bg-red-900
   block
@@ -82,7 +85,7 @@ export const SABarProgress = styled.span(({ barWidth }: { type: BarProgress }) =
   `width : ${barWidth}%`,
 ]);
 
-export const SDBarProgress = styled.span(({ barWidth }: { type: BarProgress }) => [
+export const SDBarProgress = styled.span(({ barWidth }: BarProgress) => [
   tw`
   bg-blue-900
   block
@@ -91,3 +94,13 @@ export const SDBarProgress = styled.span(({ barWidth }: { type: BarProgress }) =
   `,
   `width : ${barWidth}%`,
 ]);
+
+// export const SDBarProgress = styled.span(({ barWidth }: BarProgress) => [
+//   tw`
+//   bg-blue-900
+//   block
+//   h-full
+//   rounded-xl
+//   `,
+//   `width : ${barWidth}%`,
+// ]);

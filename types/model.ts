@@ -78,3 +78,7 @@ export interface StatDetail {
   name: string;
   url: string;
 }
+
+export interface BarProgress {
+  barWidth: number;
+}

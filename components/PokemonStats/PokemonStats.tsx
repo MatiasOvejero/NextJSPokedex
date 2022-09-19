@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  Attack,
+  AttackBarProgress,
   BarContainer,
-  Defense,
-  HP,
-  SpecialAttack,
-  SpecialDefense,
-  Speed,
+  DefenseBarProgress,
+  HpBarProgress,
+  SABarProgress,
+  SDBarProgress,
+  SpeedBarProgress,
   StatContainer,
   StatName,
   StatScreen,
@@ -29,42 +29,42 @@ export default function PokemonStats(props: Props) {
         <StatName>HP </StatName>
         <StatValue>{props.hp}</StatValue>
         <BarContainer>
-          <HP></HP>
+          <HpBarProgress barWidth={props.hp}></HpBarProgress>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <StatName>attack </StatName>
+        <StatName>Attack </StatName>
         <StatValue>{props.attack}</StatValue>
         <BarContainer>
-          <Attack></Attack>
+          <AttackBarProgress barWidth={props.attack}></AttackBarProgress>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <StatName>defense </StatName>
+        <StatName>Defense </StatName>
         <StatValue>{props.defense}</StatValue>
         <BarContainer>
-          <Defense></Defense>
+          <DefenseBarProgress barWidth={props.defense}></DefenseBarProgress>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <StatName>speed </StatName>
+        <StatName>Speed </StatName>
         <StatValue>{props.speed}</StatValue>
         <BarContainer>
-          <Speed></Speed>
+          <SpeedBarProgress barWidth={props.speed}></SpeedBarProgress>
         </BarContainer>
       </StatContainer>
       <StatContainer>
         <StatName>Special attack </StatName>
         <StatValue>{props.special_attack}</StatValue>
         <BarContainer>
-          <SpecialAttack></SpecialAttack>
+          <SABarProgress barWidth={props.special_attack}></SABarProgress>
         </BarContainer>
       </StatContainer>
       <StatContainer>
-        <StatName>special defense </StatName>
+        <StatName>Special defense </StatName>
         <StatValue>{props.special_defense}</StatValue>
         <BarContainer>
-          <SpecialDefense></SpecialDefense>
+          <SDBarProgress barWidth={props.special_defense}></SDBarProgress>
         </BarContainer>
       </StatContainer>
     </StatScreen>

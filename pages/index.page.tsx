@@ -15,8 +15,8 @@ export async function getServerSideProps() {
   const pokemonList = await resp.json();
 
   const list = await Promise.all(
-    pokemonList.results.map(async (listPokemon: Pokemon) => {
-      const response = await fetch(listPokemon.url);
+    pokemonList.results.map(async (pokemon: Pokemon) => {
+      const response = await fetch(pokemon.url);
       return await response.json();
     })
   );

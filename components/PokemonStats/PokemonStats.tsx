@@ -25,21 +25,21 @@ interface Props {
 export default function PokemonStats(props: Props) {
   return (
     <StatScreen>
-      <StatContainer>
+      <StatContainer key={"hp"}>
         <StatName>HP </StatName>
         <StatValue>{props.hp}</StatValue>
         <BarContainer>
           <HpBarProgress barWidth={props.hp}></HpBarProgress>
         </BarContainer>
       </StatContainer>
-      <StatContainer>
+      <StatContainer key={"attack"}>
         <StatName>Attack </StatName>
         <StatValue>{props.attack}</StatValue>
         <BarContainer>
           <AttackBarProgress barWidth={props.attack}></AttackBarProgress>
         </BarContainer>
       </StatContainer>
-      <StatContainer>
+      <StatContainer key={"defense"}>
         <StatName>Defense </StatName>
         <StatValue>{props.defense}</StatValue>
         <BarContainer>

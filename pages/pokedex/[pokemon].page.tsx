@@ -21,11 +21,13 @@ import {
   Anchor,
   ButtonTab,
 } from "./[pokemon].styled";
-import { makePokemon, Pokemon } from "../../types/model";
+import { makePokemon, Pokemon, Evolution, Species } from "../../types/model";
 import PokemonAbout from "../../components/PokemonAbout/PokemonAbout";
 import PokemonStats from "../../components/PokemonStats/PokemonStats";
 import { TypeForBackground } from "../../utils/backgroundColorSelector";
 import { NextPageContext } from "next";
+import PokemonMoves from "../../components/PokemonMoves/PokemonMoves";
+import PokemonEvolution from "../../components/PokemonEvolution/PokemonEvolution";
 
 interface Context extends NextPageContext {
   params: {
@@ -35,8 +37,30 @@ interface Context extends NextPageContext {
 
 export async function getServerSideProps(context: Context) {
   const resp = await fetch(`https://pokeapi.co/api/v2/pokemon/${context.params.pokemon}`);
-
   const pokemonData = await resp.json();
+
+  const evolutionUrlRes = await fetch(pokemonData.species.url);
+  const evolutionUrl = await evolutionUrlRes.json();
+
+  const evolutionChainRes = await fetch(evolutionUrl.evolution_chain.url);
+  const evolutionChainData = await evolutionChainRes.json();
+
+  const hasEvolves_to = evolutionChainData.chain.evolves_to;
+  const evolutions: Species[] = [];
+  let counter = 0;
+
+  const processEvolution = (evolution: Evolution) => {
+    counter++;
+    if (evolution) {
+      evolutions.push(evolution.species);
+      if (evolution.evolves_to.length > 0) {
+        processEvolution(evolution.evolves_to[0]);
+      }
+    }
+  };
+  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 61 ~ processEvolution ~ counter", counter);
+
+  processEvolution(hasEvolves_to[0]);
 
   const pokemon: Pokemon = makePokemon({
     hp: pokemonData.stats[0].base_stat,
@@ -52,6 +76,7 @@ export async function getServerSideProps(context: Context) {
     name: pokemonData.name,
     id: pokemonData.id,
     stats: pokemonData.stats,
+    evolution: evolutionChainData.chain.evolves_to,
     types: pokemonData.types,
     weight: pokemonData.weight,
   });
@@ -83,11 +108,19 @@ export default function PokemonCard({ pokemon }: Props) {
         speed={pokemon.speed}
       />
     ),
+    moves: <PokemonMoves></PokemonMoves>,
+    evolution: (
+      <PokemonEvolution
+        name={pokemon.evolution[0].species.name}
+        url={pokemon.evolution[0].species.url}
+      ></PokemonEvolution>
+    ),
   };
 
   const setAboutTab = () => setCurrent("about");
   const setStatsTab = () => setCurrent("stats");
   const setMovesTab = () => setCurrent("moves");
+  const setEvolutionTab = () => setCurrent("evolution");
 
   return (
     <Container type={mainType}>
@@ -126,7 +159,7 @@ export default function PokemonCard({ pokemon }: Props) {
                 <ButtonTab onClick={setStatsTab}>Stats</ButtonTab>
               </TableCell>
               <TableCell>
-                <ButtonTab onClick={setAboutTab}>Evolution</ButtonTab>
+                <ButtonTab onClick={setEvolutionTab}>Evolution</ButtonTab>
               </TableCell>
               <TableCell>
                 <ButtonTab onClick={setMovesTab}>Moves</ButtonTab>

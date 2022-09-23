@@ -122,17 +122,7 @@ export default function PokemonCard({ pokemon }: Props) {
       />
     ),
     moves: <PokemonMoves></PokemonMoves>,
-    evolution: (
-      <PokemonEvolution
-        evolutions={pokemon.evolutions}
-        // firstEvolutionName={pokemon.firstEvolutionName}
-        // firstEvolutionText={pokemon.firstEvolutionText}
-        // firstEvolutionImage={pokemon.firstEvolutionImage}
-        // secondEvolutionName={pokemon.secondEvolutionName}
-        // secondEvolutionText={pokemon.secondEvolutionText}
-        // secondEvolutionImage={pokemon.secondEvolutionImage}
-      ></PokemonEvolution>
-    ),
+    evolution: <PokemonEvolution evolutions={pokemon.evolutions}></PokemonEvolution>,
   };
 
   const setAboutTab = () => setCurrent("about");

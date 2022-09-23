@@ -50,7 +50,6 @@ export async function getServerSideProps(context: Context) {
   let counter = 0;
 
   const processEvolution = (evolution: Evolution) => {
-    counter++;
     if (evolution) {
       evolutions.push(evolution.species);
       if (evolution.evolves_to.length > 0) {
@@ -58,7 +57,6 @@ export async function getServerSideProps(context: Context) {
       }
     }
   };
-  console.log("🚀 ~ file: [pokemon].page.tsx ~ line 61 ~ processEvolution ~ counter", counter);
 
   processEvolution(hasEvolves_to[0]);
 

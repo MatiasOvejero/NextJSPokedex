@@ -7,6 +7,7 @@ export interface Pokemon {
   name: string;
   image: string;
   types: PokemonType[];
+  evolutions: EvolutionChain[];
   url: string;
   id: number;
   abilities: Abilities[];
@@ -18,9 +19,9 @@ export interface Pokemon {
   hp: number;
   attack: number;
   defense: number;
+  species: Species;
   special_attack: number;
   special_defense: number;
-  evolution: Evolution[];
   speed: number;
 }
 
@@ -28,15 +29,9 @@ export const makePokemon = (pokemon: Partial<Pokemon>): Pokemon => {
   const defaultValue: Pokemon = {
     abilities: pokemon.abilities ? pokemon.abilities : [],
     exp: pokemon.exp ? pokemon.exp : 0,
-    evolutionsData: pokemon.evolutionsData ? pokemon.evolutionsData : [],
+    evolutions: pokemon.evolutions ? pokemon.evolutions : [],
     height: pokemon.height ? pokemon.height : 0,
     image: pokemon.image ? pokemon.image : "",
-    // firstEvolutionName : pokemon.firstEvolutionName ? pokemon.firstEvolutionName : "",
-    // firstEvolutionText: pokemon.firstEvolutionText ? pokemon.firstEvolutionText : "",
-    // firstEvolutionImage: pokemon.firstEvolutionImage ? pokemon.firstEvolutionImage : "",
-    // secondEvolutionName: pokemon.secondEvolutionName ? pokemon.secondEvolutionName : "",
-    // secondEvolutionText: pokemon.secondEvolutionText ? pokemon.secondEvolutionText : "",
-    // secondEvolutionImage: pokemon.secondEvolutionImage ? pokemon.secondEvolutionImage : "",
     id: pokemon.id ? pokemon.id : -1,
     name: pokemon.name ? pokemon.name : "",
     sprites: pokemon.sprites ? pokemon.sprites : { front_default: "" },
@@ -47,6 +42,7 @@ export const makePokemon = (pokemon: Partial<Pokemon>): Pokemon => {
     hp: pokemon.hp ? pokemon.hp : 0,
     attack: pokemon.attack ? pokemon.attack : 0,
     defense: pokemon.defense ? pokemon.defense : 0,
+    species: pokemon.species ? pokemon.species : { name: "", url: "" },
     speed: pokemon.speed ? pokemon.speed : 0,
     special_attack: pokemon.special_attack ? pokemon.special_attack : 0,
     special_defense: pokemon.special_defense ? pokemon.special_defense : 0,
@@ -103,4 +99,14 @@ export interface Stat {
 export interface StatDetail {
   name: string;
   url: string;
+}
+
+export interface EvolutionsData {
+  evolutionsData: EvolutionChain[];
+}
+
+export interface EvolutionChain {
+  name: string;
+  text: string;
+  image: string;
 }

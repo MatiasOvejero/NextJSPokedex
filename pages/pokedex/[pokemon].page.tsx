@@ -80,13 +80,7 @@ export async function getServerSideProps(context: Context) {
     attack: pokemonData.stats[1].base_stat,
     defense: pokemonData.stats[2].base_stat,
     exp: pokemonData.base_experience,
-    // firstEvolutionName: evolutionsData[0].name,
-    // firstEvolutionText: evolutionsData[0].text,
-    // firstEvolutionImage: evolutionsData[0].image,
-    // secondEvolutionName: evolutionsData[1].name,
-    // secondEvolutionText: evolutionsData[1].text,
-    // secondEvolutionImage: evolutionsData[1].image,
-    evolutionsData,
+    evolutions: evolutionsData,
     height: pokemonData.height,
     hp: pokemonData.stats[0].base_stat,
     id: pokemonData.id,
@@ -130,7 +124,7 @@ export default function PokemonCard({ pokemon }: Props) {
     moves: <PokemonMoves></PokemonMoves>,
     evolution: (
       <PokemonEvolution
-        evolutionsData={pokemon.evolutionsData}
+        evolutions={pokemon.evolutions}
         // firstEvolutionName={pokemon.firstEvolutionName}
         // firstEvolutionText={pokemon.firstEvolutionText}
         // firstEvolutionImage={pokemon.firstEvolutionImage}

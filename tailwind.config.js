@@ -38,6 +38,7 @@ module.exports = {
         greyPrimary: "#80808057",
         greySecondary: "#55464657",
         lightBorder: "rgb(252, 240, 240)",
+        greenPrimary: "#eefcf9",
       },
     },
   },

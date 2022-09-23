@@ -47,7 +47,6 @@ export async function getServerSideProps(context: Context) {
 
   const hasEvolves_to = evolutionChainData.chain.evolves_to;
   const evolutions: Species[] = [];
-  let counter = 0;
 
   const processEvolution = (evolution: Evolution) => {
     if (evolution) {
@@ -57,24 +56,46 @@ export async function getServerSideProps(context: Context) {
       }
     }
   };
-
   processEvolution(hasEvolves_to[0]);
 
+  const evolutionsData = [];
+
+  for (const evolutionData of evolutions) {
+    const getImageRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${evolutionData.name}`);
+    const getImageData = await getImageRes.json();
+    const getFlavorTextRes = await fetch(evolutionData.url);
+    const getFlavorTextData = await getFlavorTextRes.json();
+
+    const evolutionPokemon = {
+      name: evolutionData.name,
+      text: getFlavorTextData.flavor_text_entries[0].flavor_text,
+      image: getImageData.sprites.front_default,
+    };
+
+    evolutionsData.push(evolutionPokemon);
+  }
+
   const pokemon: Pokemon = makePokemon({
-    hp: pokemonData.stats[0].base_stat,
+    abilities: pokemonData.abilities,
     attack: pokemonData.stats[1].base_stat,
     defense: pokemonData.stats[2].base_stat,
+    exp: pokemonData.base_experience,
+    // firstEvolutionName: evolutionsData[0].name,
+    // firstEvolutionText: evolutionsData[0].text,
+    // firstEvolutionImage: evolutionsData[0].image,
+    // secondEvolutionName: evolutionsData[1].name,
+    // secondEvolutionText: evolutionsData[1].text,
+    // secondEvolutionImage: evolutionsData[1].image,
+    evolutionsData,
+    height: pokemonData.height,
+    hp: pokemonData.stats[0].base_stat,
+    id: pokemonData.id,
+    image: pokemonData.sprites.front_default,
+    name: pokemonData.name,
     special_attack: pokemonData.stats[3].base_stat,
     special_defense: pokemonData.stats[4].base_stat,
     speed: pokemonData.stats[5].base_stat,
-    abilities: pokemonData.abilities,
-    exp: pokemonData.base_experience,
-    height: pokemonData.height,
-    image: pokemonData.sprites.front_default,
-    name: pokemonData.name,
-    id: pokemonData.id,
     stats: pokemonData.stats,
-    evolution: evolutionChainData.chain.evolves_to,
     types: pokemonData.types,
     weight: pokemonData.weight,
   });
@@ -109,8 +130,13 @@ export default function PokemonCard({ pokemon }: Props) {
     moves: <PokemonMoves></PokemonMoves>,
     evolution: (
       <PokemonEvolution
-        name={pokemon.evolution[0].species.name}
-        url={pokemon.evolution[0].species.url}
+        evolutionsData={pokemon.evolutionsData}
+        // firstEvolutionName={pokemon.firstEvolutionName}
+        // firstEvolutionText={pokemon.firstEvolutionText}
+        // firstEvolutionImage={pokemon.firstEvolutionImage}
+        // secondEvolutionName={pokemon.secondEvolutionName}
+        // secondEvolutionText={pokemon.secondEvolutionText}
+        // secondEvolutionImage={pokemon.secondEvolutionImage}
       ></PokemonEvolution>
     ),
   };

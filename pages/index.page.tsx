@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import Card from "./pokedex/[pokemon].page";
 import React from "react";
-import styled from "styled-components";
 import { PokedexCard } from "../components/PokedexCard/PokedexCard";
 import { Pokedex } from "./index.styled";
 import { Pokemon } from "../types/model";

@@ -12,19 +12,18 @@ export default function PokemonAbout(props: Props) {
   return (
     <AboutTable>
       <AboutContainer>
-        <DataContainer>
+        <DataContainer key={"baseExp"}>
           <InfoName>Base Experience</InfoName>
           <DatabaseData>{props.exp}</DatabaseData>
         </DataContainer>
-        <DataContainer>
+        <DataContainer key={"height"}>
           <InfoName>Height</InfoName>
           <DatabaseData>{props.height}</DatabaseData>
         </DataContainer>
-        <DataContainer>
+        <DataContainer key={"weight"}>
           <InfoName>Weight</InfoName>
           <DatabaseData>{props.weight}</DatabaseData>
         </DataContainer>
-        {/* <div>Habilidades: {props.abilities}</div> */}
       </AboutContainer>
     </AboutTable>
   );

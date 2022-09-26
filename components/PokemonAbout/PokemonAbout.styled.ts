@@ -14,7 +14,7 @@ export const AboutContainer = tw.tbody`
   justify-evenly
 `;
 
-export const DataContainer = tw.td`
+export const DataContainer = tw.tr`
   mr-32
   flex
   justify-evenly
